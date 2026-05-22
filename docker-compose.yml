@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: news_aggregator
+      MYSQL_USER: news_user
+      MYSQL_PASSWORD: news_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql   # автосоздание таблиц
+    ports:
+      - "3306:3306"
+
+  cache:
+    image: memcached:latest
+    restart: unless-stopped
+    ports:
+      - "11211:11211"
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - cache
+
+volumes:
+  db_data:
