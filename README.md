@@ -3,7 +3,7 @@
 Тестовое задание: сбор новостей из RSS, хранение в MySQL, отображение с фильтрацией и кеширование через Memcached.
 
 ## Стек
-- PHP 8.4 (native, без фреймворков, автозагрузка через Composer PSR-4)
+- PHP 8.4
 - MySQL 8.4
 - Memcached
 - Docker (Apache + PHP, MySQL, Memcached)
