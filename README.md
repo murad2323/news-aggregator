@@ -9,8 +9,8 @@
 - Docker (Apache + PHP, MySQL, Memcached)
 
 ## Структура проекта
-- `src/App/Database.php` – Singleton-подключение к MySQL
-- `src/App/Cache.php` – Singleton-обёртка над Memcached
+- `src/App/Database.php` – подключение к MySQL
+- `src/App/Cache.php` –  подключение Memcached
 - `src/App/NewsRepository.php` – получение новостей и категорий с кешированием
 - `src/App/RssParser.php` – парсинг RSS и сохранение в БД
 - `src/index.php` – веб-интерфейс с фильтрацией
@@ -22,17 +22,15 @@
 ## Быстрый старт
 
 1. Убедитесь, что установлены Docker и Docker Compose.
+
 2. Клонируйте репозиторий:
-   ```bash
    git clone <URL>
    cd news-aggregator
    
 3. Запустите сервисы:
-   ```bash
    docker compose up -d --build
    
-4. Выполните первоначальный парсинг RSS:
-   ```bash
+4. Выполните парсинг RSS:
    docker compose exec app php /var/www/html/parser.php
    
 5. Откройте в браузере http://localhost:8080
@@ -43,5 +41,4 @@
    Кнопка «Сбросить» для очистки фильтров
 
 Повторный парсинг
-   ```bash
    docker compose exec app php /var/www/html/parser.php
